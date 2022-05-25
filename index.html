@@ -71,6 +71,35 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-compile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/05/25/compile/" class="article-date">
+  <time class="dt-published" datetime="2022-05-25T14:26:50.121Z" itemprop="datePublished">2022-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>每次Linux更新内核后，需要重新编译vmware，可参考以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">git <span class="built_in">clone</span> https://github.com/mkubecek/vmware-host/modules.git</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cd</span> vmware-host-moudles</span></span><br><span class="line">git checkout workstation-16.2.3</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br><span class="line">sudo /etc/init.d/vmware restart</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/05/25/compile/" data-id="cl3lol95k0000r47wdq66bupj" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-firstblog" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/05/22/firstblog/" class="article-date">
@@ -189,6 +218,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/05/25/compile/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2022/05/22/firstblog/">firstblog</a>
