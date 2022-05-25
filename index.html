@@ -71,9 +71,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-compile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Linux内核更新后重新编译vmware" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/05/25/compile/" class="article-date">
+    <a href="/2022/05/25/Linux%E5%86%85%E6%A0%B8%E6%9B%B4%E6%96%B0%E5%90%8E%E9%87%8D%E6%96%B0%E7%BC%96%E8%AF%91vmware/" class="article-date">
   <time class="dt-published" datetime="2022-05-25T14:26:50.121Z" itemprop="datePublished">2022-05-25</time>
 </a>
     
@@ -83,12 +83,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>每次Linux更新内核后，需要重新编译vmware，可参考以下命令：</p>
+        <hr>
+<h2 id="更新Linux内核后重新打开vmware报错"><a href="#更新Linux内核后重新打开vmware报错" class="headerlink" title="更新Linux内核后重新打开vmware报错"></a>更新Linux内核后重新打开vmware报错</h2><p>每次Linux更新内核后，需要重新编译vmware，可参考以下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">git <span class="built_in">clone</span> https://github.com/mkubecek/vmware-host/modules.git</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cd</span> vmware-host-moudles</span></span><br><span class="line">git checkout workstation-16.2.3</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br><span class="line">sudo /etc/init.d/vmware restart</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/05/25/compile/" data-id="cl3lol95k0000r47wdq66bupj" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/05/25/Linux%E5%86%85%E6%A0%B8%E6%9B%B4%E6%96%B0%E5%90%8E%E9%87%8D%E6%96%B0%E7%BC%96%E8%AF%91vmware/" data-id="cl3lopudh00002k7was2216o4" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -220,7 +221,7 @@
       <ul>
         
           <li>
-            <a href="/2022/05/25/compile/">(no title)</a>
+            <a href="/2022/05/25/Linux%E5%86%85%E6%A0%B8%E6%9B%B4%E6%96%B0%E5%90%8E%E9%87%8D%E6%96%B0%E7%BC%96%E8%AF%91vmware/">(no title)</a>
           </li>
         
           <li>
