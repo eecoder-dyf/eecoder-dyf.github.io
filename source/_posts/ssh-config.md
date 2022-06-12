@@ -62,3 +62,16 @@ ssh-keygen -f "/home/dyf/.ssh/known_hosts" -R "10.xxx.xxx.xxx(remote host ip)"
 ```
 
 把该ip主机从known_hosts中删除
+
+Windows机器无法使用ssh-copy-id命令，在使用前先执行如下内容：
+```powershell
+function ssh-copy-id([string]$userAtMachine, $args){   
+    $publicKey = "$ENV:USERPROFILE" + "/.ssh/id_rsa.pub"
+    if (!(Test-Path "$publicKey")){
+        Write-Error "ERROR: failed to open ID file '$publicKey': No such file"            
+    }
+    else {
+        & cat "$publicKey" | ssh $args $userAtMachine "umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys || exit 1"      
+    }
+}
+```
