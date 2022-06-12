@@ -16,7 +16,7 @@
 <meta property="og:description" content="ssh配置免密登录及vscode首先执行: ssh-keygen -t rsa， 生成密钥文件   可以看到 ~&#x2F;.ssh目录下生成了两个文件id_rsa，id_rsa.pub分别是私钥和公钥  然后把公钥复制给远程主机，需要远程主机ssh配置了允许密钥登录才能生效 1ssh-copy-id -i ~&#x2F;.ssh&#x2F;id_rsa.pub usrname@hostip   或 1ssh-copy-id">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-26T03:35:26.000Z">
-<meta property="article:modified_time" content="2022-05-26T03:40:14.732Z">
+<meta property="article:modified_time" content="2022-06-12T09:45:35.902Z">
 <meta property="article:author" content="eecoder-dyf">
 <meta name="twitter:card" content="summary">
   
@@ -171,6 +171,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -f &quot;/home/dyf/.ssh/known_hosts&quot; -R &quot;10.xxx.xxx.xxx(remote host ip)&quot;</span><br></pre></td></tr></table></figure>
 
 <p>把该ip主机从known_hosts中删除</p>
+<p>Windows机器无法使用ssh-copy-id命令，在使用前先执行如下内容：</p>
+<p>&#96;&#96;&#96;powershell<br>function ssh-copy-id([string]$userAtMachine, $args){<br>    $publicKey &#x3D; “$ENV:USERPROFILE” + “&#x2F;.ssh&#x2F;id_rsa.pub”<br>    if (!(Test-Path “$publicKey”)){<br>        Write-Error “ERROR: failed to open ID file ‘$publicKey’: No such file”<br>    }<br>    else {<br>        &amp; cat “$publicKey” | ssh $args $userAtMachine “umask 077; test -d .ssh || mkdir .ssh ; cat &gt;&gt; .ssh&#x2F;authorized_keys || exit 1”<br>    }<br>}</p>
 
       
 

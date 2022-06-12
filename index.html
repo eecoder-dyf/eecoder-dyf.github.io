@@ -169,6 +169,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -f &quot;/home/dyf/.ssh/known_hosts&quot; -R &quot;10.xxx.xxx.xxx(remote host ip)&quot;</span><br></pre></td></tr></table></figure>
 
 <p>把该ip主机从known_hosts中删除</p>
+<p>Windows机器无法使用ssh-copy-id命令，在使用前先执行如下内容：</p>
+<p>&#96;&#96;&#96;powershell<br>function ssh-copy-id([string]$userAtMachine, $args){<br>    $publicKey &#x3D; “$ENV:USERPROFILE” + “&#x2F;.ssh&#x2F;id_rsa.pub”<br>    if (!(Test-Path “$publicKey”)){<br>        Write-Error “ERROR: failed to open ID file ‘$publicKey’: No such file”<br>    }<br>    else {<br>        &amp; cat “$publicKey” | ssh $args $userAtMachine “umask 077; test -d .ssh || mkdir .ssh ; cat &gt;&gt; .ssh&#x2F;authorized_keys || exit 1”<br>    }<br>}</p>
 
       
 
