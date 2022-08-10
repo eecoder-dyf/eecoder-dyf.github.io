@@ -13,7 +13,7 @@ tags:
 然后把公钥复制给远程主机，需要远程主机ssh配置了允许密钥登录才能生效
 
 ```shell
-ssh-copy-id -i ~/.ssh/id_rsa.pub usrname@hostip 
+ssh-copy-id -i ~/.ssh/id_rsa.pub usrname@hostip #-i指定公钥，用默认公钥时可以不加
 ```
 
 或
@@ -58,7 +58,7 @@ IdentityFile "C:\Users\dyf\.ssh\id_rsa"
 若之前连接过主机，但主机发生了变更(例如重装系统，换机器等)，但ip没变，可能会报错，此时需要执行：  
 
 ```shell
-ssh-keygen -f "/home/dyf/.ssh/known_hosts" -R "10.xxx.xxx.xxx(remote host ip)"
+ssh-keygen -R "[cn.buaamc2.net]:22" #[ip or domain]:port
 ```
 
 把该ip主机从known_hosts中删除
