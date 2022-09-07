@@ -9,12 +9,12 @@ tags:
 
 以硬盘`/dev/sda`为例
 ### 第一步：取消硬盘挂载
-```shell
+```bash
 udisksctl unmount -b /dev/sda1
 ```
 这里用到了udisksctl这个工具，不用这个工具也可以，直接`sudo umount -l /dev/sda1`
 ### 第二步：断开电源
-```shell
+```bash
 udisksctl power-off -b /dev/sda
 ```
 这样才算真正弹出了硬盘，可以安心拔出了
