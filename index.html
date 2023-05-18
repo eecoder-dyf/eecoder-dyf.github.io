@@ -148,7 +148,7 @@
 <p>与其他网络文件系统（如NFS和Samba）相比，SSHFS的优势在于它不需要在服务器端进行任何额外的配置。要使用SSHFS，您只需要具有SSH访问远程服务器的权限。</p>
 <p>使用网络文件分享，主要优势是在网速够快的情况下可以多台服务器共用一份数据，省去不同服务器之间传输的麻烦，也节省硬盘空间</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><p>无需任何额外配置，只需要安装好OpenSSH服务器即可</p>
-<p><strong>Ubuntu</strong>：\</p>
+<p><strong>Ubuntu</strong>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server <span class="comment"># 系统管理员配置，普通用户无需配置</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>Windows 10&#x2F;11：</strong> <br>Step1: 设置-应用-可选功能-添加可选功能-搜索“OpenSSH服务器”并安装 <br>Step2: Win+R 打开运行窗口，输入services.msc 打开服务，找到”OpenSSH SSH Server”一项，打开并修改<strong>启动类型</strong>为“自动”</p>
