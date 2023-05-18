@@ -164,7 +164,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sshfs -p port usr@remoteip:/home/usr/share /mnt/remote1</span><br></pre></td></tr></table></figure>
 <p>注：如果Windows作为服务器，文件分享给Linux，其ssh的路径输入方法为把反斜杠改成但正斜杠，如果有空格或中文，可以给路径加上引号，如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sshfs usr@remoteip:<span class="string">&quot;C:/Users/user/远程 分享&quot;</span> /mnt/remote1 <span class="comment">#scp同理</span></span><br></pre></td></tr></table></figure>
-<p>此外也可以直接利用OpenSSH-config文件，使用代号以及免密登录，参见<a target="_blank" rel="noopener" href="https://eecoder-dyf.github.io/2022/05/26/ssh-config/">博客</a> \</p>
+<p>此外也可以直接利用OpenSSH-config文件，使用代号以及免密登录，参见<a target="_blank" rel="noopener" href="https://eecoder-dyf.github.io/2022/05/26/ssh-config/">博客</a> </p>
 <p>取消连接：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fusermount -u /mnt/remote1</span><br></pre></td></tr></table></figure>
 <p><strong>Windows</strong>: <br>建议直接使用GUI界面 打开SSHFS-Win Manager 配置SSH连接即可，参见<a target="_blank" rel="noopener" href="https://blog.csdn.net/xieqiaokang/article/details/109557482">博客</a></p>

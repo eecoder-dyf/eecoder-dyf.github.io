@@ -16,7 +16,7 @@
 <meta property="og:description" content="简介SSHFS（SSH Filesystem）是一个基于FUSE的文件系统客户端，用于通过SSH连接远程目录。SSHFS使用的是SFTP协议，它是SSH的一个子系统，在大多数SSH服务器上默认启用 与其他网络文件系统（如NFS和Samba）相比，SSHFS的优势在于它不需要在服务器端进行任何额外的配置。要使用SSHFS，您只需要具有SSH访问远程服务器的权限。 使用网络文件分享，主要优势是在网速够">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-18T02:16:47.000Z">
-<meta property="article:modified_time" content="2023-05-18T03:15:31.726Z">
+<meta property="article:modified_time" content="2023-05-18T03:16:42.043Z">
 <meta property="article:author" content="eecoder-dyf">
 <meta name="twitter:card" content="summary">
   
@@ -166,7 +166,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sshfs -p port usr@remoteip:/home/usr/share /mnt/remote1</span><br></pre></td></tr></table></figure>
 <p>注：如果Windows作为服务器，文件分享给Linux，其ssh的路径输入方法为把反斜杠改成但正斜杠，如果有空格或中文，可以给路径加上引号，如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sshfs usr@remoteip:<span class="string">&quot;C:/Users/user/远程 分享&quot;</span> /mnt/remote1 <span class="comment">#scp同理</span></span><br></pre></td></tr></table></figure>
-<p>此外也可以直接利用OpenSSH-config文件，使用代号以及免密登录，参见<a target="_blank" rel="noopener" href="https://eecoder-dyf.github.io/2022/05/26/ssh-config/">博客</a> \</p>
+<p>此外也可以直接利用OpenSSH-config文件，使用代号以及免密登录，参见<a target="_blank" rel="noopener" href="https://eecoder-dyf.github.io/2022/05/26/ssh-config/">博客</a> </p>
 <p>取消连接：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fusermount -u /mnt/remote1</span><br></pre></td></tr></table></figure>
 <p><strong>Windows</strong>: <br>建议直接使用GUI界面 打开SSHFS-Win Manager 配置SSH连接即可，参见<a target="_blank" rel="noopener" href="https://blog.csdn.net/xieqiaokang/article/details/109557482">博客</a></p>
