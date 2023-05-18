@@ -44,7 +44,7 @@ sshfs -p port usr@remoteip:/home/usr/share /mnt/remote1
 ```bash
 sshfs usr@remoteip:"C:/Users/user/远程 分享" /mnt/remote1 #scp同理
 ```
-此外也可以直接利用OpenSSH-config文件，使用代号以及免密登录，参见[博客](https://eecoder-dyf.github.io/2022/05/26/ssh-config/) \
+此外也可以直接利用OpenSSH-config文件，使用代号以及免密登录，参见[博客](https://eecoder-dyf.github.io/2022/05/26/ssh-config/) 
 
 取消连接：
 ```bash
