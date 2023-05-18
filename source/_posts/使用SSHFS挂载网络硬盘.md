@@ -14,7 +14,7 @@ SSHFS（SSH Filesystem）是一个基于FUSE的文件系统客户端，用于通
 ### 服务器端
 无需任何额外配置，只需要安装好OpenSSH服务器即可
 
-**Ubuntu**：\
+**Ubuntu**：
 ```bash
 sudo apt install openssh-server # 系统管理员配置，普通用户无需配置
 ```
