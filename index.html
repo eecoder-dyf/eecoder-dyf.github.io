@@ -309,6 +309,11 @@
 
 <p><strong>若硬盘空间不够，可参考以下移动用户文件夹</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> /home/yourname /media/data/ <span class="comment">#迁移用户文件夹</span></span><br><span class="line"><span class="built_in">ln</span> -s /media/data/yourname /home/yourname	<span class="comment">#创建软链接</span></span><br><span class="line"><span class="built_in">chown</span> -R yourname:yourname /media/data/yourname	<span class="comment">#授予访问目录权限</span></span><br><span class="line"><span class="built_in">chmod</span> 760 /media/data/yourname	<span class="comment">#给该目录设权限</span></span><br></pre></td></tr></table></figure>
+<p>现建议直接把用户路径建立在硬盘下面，而非<code>/home</code>下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -d /media/data/yourname -m yourname</span><br></pre></td></tr></table></figure>
+<p><strong>快速添加用户脚本</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">name=<span class="variable">$1</span></span><br><span class="line">pswd=<span class="variable">$2</span></span><br><span class="line">useradd -d <span class="string">&quot;/home/<span class="variable">$name</span>&quot;</span> -m <span class="variable">$name</span>   <span class="comment"># 可把/home/改成要建立账户的硬盘路径</span></span><br><span class="line">usermod -s /bin/bash <span class="variable">$name</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;<span class="variable">$pswd</span>\n<span class="variable">$pswd</span>&quot;</span> | passwd <span class="variable">$name</span></span><br></pre></td></tr></table></figure>
+
       
 
       
