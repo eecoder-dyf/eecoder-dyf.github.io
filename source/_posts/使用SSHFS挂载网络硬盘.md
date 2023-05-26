@@ -54,29 +54,12 @@ fusermount -u /mnt/remote1
 建议直接使用GUI界面 打开SSHFS-Win Manager 配置SSH连接即可，参见[博客](https://blog.csdn.net/xieqiaokang/article/details/109557482)
 
 ## 使用实例
-可以直接服务器间分享conda环境、数据集、代码等（互联带宽为10G的可以都分享，1G的建议只分享代码）
+可以直接服务器间共享数据集、代码等（互联带宽为10G的可以分享数据集，1G的建议只分享代码）
 
-例如40901服务器和40902服务器之间，假设40901存放数据目录为`/mnt/ssd0/dyf`，有`./code`、`./miniconda3`和`./dataset`三个文件夹，40902的目标目录为`/home/dyf`可以编写脚本在40902机器上执行：
+例如40901服务器和40902服务器之间，假设40901存放数据目录为`/mnt/ssd0/dyf`，有`./code`和`./dataset`两个文件夹，40902的目标目录为`/home/dyf`可以编写脚本在40902机器上执行：
 ```bash
 #!/bin/bash
-sshfs dyf@40901.buaamc2.net:/mnt/ssd0/dyf/miniconda3 /home/dyf/miniconda3
 sshfs dyf@40901.buaamc2.net:/mnt/ssd0/dyf/code /home/dyf/code
 sshfs dyf@40901.buaamc2.net:/mnt/ssd0/dyf/dataset /home/dyf/dataset
 ```
-然后编写40902的`~/.bashrc`，添加conda路径（直接参考40901的bashrc，修改路径即可激活）
-```bash
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/dyf/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/dyf/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/dyf/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/dyf/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-```
+之后只要安装conda环境即可运行代码
