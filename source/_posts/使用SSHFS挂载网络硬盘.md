@@ -48,7 +48,7 @@ sshfs usr@remoteip:"C:/Users/user/远程 分享" /mnt/remote1 #scp同理
 
 取消连接：
 ```bash
-fusermount -u /mnt/remote1
+fusermount -uz /mnt/remote1
 ```
 **Windows**: \
 建议直接使用GUI界面 打开SSHFS-Win Manager 配置SSH连接即可，参见[博客](https://blog.csdn.net/xieqiaokang/article/details/109557482)
