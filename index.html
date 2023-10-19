@@ -124,6 +124,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Windows磁盘检查后found-xxx内-chk文件恢复" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/10/19/Windows%E7%A3%81%E7%9B%98%E6%A3%80%E6%9F%A5%E5%90%8Efound-xxx%E5%86%85-chk%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/">Windows磁盘检查后found.xxx内.chk文件恢复</a>
+    </h1>
+  
+
+        
+        <a href="/2023/10/19/Windows%E7%A3%81%E7%9B%98%E6%A3%80%E6%9F%A5%E5%90%8Efound-xxx%E5%86%85-chk%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/" class="archive-article-date">
+  	<time datetime="2023-10-19T08:00:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-10-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近经常遇到磁盘错误，需要利用Windows的磁盘修复，具体操作为：右键需要恢复的磁盘分区-&gt;工具-&gt;检查<br>检查完成后发现分区根目录下出现<code>found.000</code>、<code>found.001</code>等文件夹，内部为一堆.chk文件。<br>参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/372662112">知乎文章</a>可知利用MIME可以获取到文件类型，以此猜测扩展名即可<br>脚本如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># chk_restore.py</span></span><br><span class="line"><span class="keyword">import</span> magic</span><br><span class="line"><span class="keyword">import</span> mimetypes</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">source_path = sys.argv[<span class="number">1</span>] </span><br><span class="line">target_path = sys.argv[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">os.makedirs(target_path, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">file_list = glob.glob(os.path.join(source_path, <span class="string">&quot;*.chk&quot;</span>))</span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> file_list:</span><br><span class="line">    f_mime = magic.from_file(f, mime=<span class="literal">True</span>) <span class="comment"># 获取MIME</span></span><br><span class="line">    ext_name = mimetypes.guess_extension(f_mime) <span class="comment"># 根据MIME猜测扩展名</span></span><br><span class="line">    _, full_name = os.path.split(f)</span><br><span class="line">    f_name, _ = os.path.splitext(full_name)</span><br><span class="line">    rec_file = os.path.join(target_path, f_name+ext_name)</span><br><span class="line">    <span class="built_in">print</span>(rec_file)</span><br><span class="line">    shutil.copyfile(f, rec_file)</span><br></pre></td></tr></table></figure>
+<p>用法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install python-magic <span class="comment"># For Linux</span></span><br><span class="line">pip install python-magic-bin <span class="comment"># For Windows</span></span><br><span class="line">python chk_restore.py <span class="variable">$source_path</span> <span class="variable">$target_path</span> <span class="comment"># 填入源文件夹和恢复文件夹即可</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/10/19/Windows%E7%A3%81%E7%9B%98%E6%A3%80%E6%9F%A5%E5%90%8Efound-xxx%E5%86%85-chk%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-使用SSHFS挂载网络硬盘" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
