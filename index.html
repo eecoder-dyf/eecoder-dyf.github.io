@@ -147,7 +147,7 @@
         <h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>参考如下<a target="_blank" rel="noopener" href="https://github.com/Jrohy/webssh">仓库</a><br>直接使用docker进行部署</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 5032:5032 --log-driver json-file --log-opt max-file=1 --log-opt max-size=100m --restart always --name webssh -e TZ=Asia/Shanghai -e savePass=<span class="literal">true</span> jrohy/webssh</span><br></pre></td></tr></table></figure>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>访问 <a target="_blank" rel="noopener" href="http://hostip:5032/">http://hostip:5032</a> 即可，其中hostip即为部署docker的服务器ip</p>
-<p>在北航校内可以访问 <a target="_blank" rel="noopener" href="https://d.buaa.edu.cn/">https://d.buaa.edu.cn</a><br>然后在最上方的访问栏选择http并输入<code>hostip:5032</code>即可访问校内SSH资源，并且可以借此<strong>传输大文件</strong></p>
+<p>在北航校外可以访问 <a target="_blank" rel="noopener" href="https://d.buaa.edu.cn/">https://d.buaa.edu.cn</a><br>然后在最上方的访问栏选择http并输入<code>hostip:5032</code>即可访问校内SSH资源，并且可以借此<strong>传输大文件</strong>，传输带宽能达到20MB&#x2F;s, 远强于跳板机</p>
 
       
 
