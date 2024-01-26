@@ -144,7 +144,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig eno1 | awk <span class="string">&#x27;/inet / &#123;print $2&#125;&#x27;</span> <span class="comment"># 直接获取网络接口eno1的ip地址，可以用来写脚本</span></span><br></pre></td></tr></table></figure>
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ifconfig eno1 | awk <span class="string">&#x27;/inet / &#123;print $2&#125;&#x27;</span> <span class="comment"># 直接获取网络接口eno1的ip地址，可以用来写脚本</span></span><br><span class="line"></span><br><span class="line">sed -i <span class="string">&#x27;s/[&gt;=&lt;=~!]=.*//&#x27;</span> requirements.txt <span class="comment"># 快速删除requirements.txt中的版本号</span></span><br></pre></td></tr></table></figure>
       
 
       

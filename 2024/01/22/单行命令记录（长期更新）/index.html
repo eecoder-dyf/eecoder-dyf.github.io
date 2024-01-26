@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>单行命令记录 (长期更新) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1ifconfig eno1 | awk &amp;#x27;&#x2F;inet &#x2F; &amp;#123;print $2&amp;#125;&amp;#x27; # 直接获取网络接口eno1的ip地址，可以用来写脚本">
+  <meta name="description" content="123ifconfig eno1 | awk &amp;#x27;&#x2F;inet &#x2F; &amp;#123;print $2&amp;#125;&amp;#x27; # 直接获取网络接口eno1的ip地址，可以用来写脚本sed -i &amp;#x27;s&#x2F;[&gt;&#x3D;&lt;&#x3D;~!]&#x3D;.*&#x2F;&#x2F;&amp;#x27; requirements.txt # 快速删除requirements.txt中的版本号">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单行命令记录 (长期更新)">
 <meta property="og:url" content="http://example.com/2024/01/22/%E5%8D%95%E8%A1%8C%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95%EF%BC%88%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%EF%BC%89/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1ifconfig eno1 | awk &amp;#x27;&#x2F;inet &#x2F; &amp;#123;print $2&amp;#125;&amp;#x27; # 直接获取网络接口eno1的ip地址，可以用来写脚本">
+<meta property="og:description" content="123ifconfig eno1 | awk &amp;#x27;&#x2F;inet &#x2F; &amp;#123;print $2&amp;#125;&amp;#x27; # 直接获取网络接口eno1的ip地址，可以用来写脚本sed -i &amp;#x27;s&#x2F;[&gt;&#x3D;&lt;&#x3D;~!]&#x3D;.*&#x2F;&#x2F;&amp;#x27; requirements.txt # 快速删除requirements.txt中的版本号">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-22T03:07:04.000Z">
-<meta property="article:modified_time" content="2024-01-22T03:08:45.280Z">
+<meta property="article:modified_time" content="2024-01-26T03:58:48.481Z">
 <meta property="article:author" content="eecoder-dyf">
 <meta name="twitter:card" content="summary">
   
@@ -146,7 +146,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig eno1 | awk <span class="string">&#x27;/inet / &#123;print $2&#125;&#x27;</span> <span class="comment"># 直接获取网络接口eno1的ip地址，可以用来写脚本</span></span><br></pre></td></tr></table></figure>
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ifconfig eno1 | awk <span class="string">&#x27;/inet / &#123;print $2&#125;&#x27;</span> <span class="comment"># 直接获取网络接口eno1的ip地址，可以用来写脚本</span></span><br><span class="line"></span><br><span class="line">sed -i <span class="string">&#x27;s/[&gt;=&lt;=~!]=.*//&#x27;</span> requirements.txt <span class="comment"># 快速删除requirements.txt中的版本号</span></span><br></pre></td></tr></table></figure>
       
 
       
