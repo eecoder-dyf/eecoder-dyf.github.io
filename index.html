@@ -124,6 +124,75 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-在终端使用各种代理的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/03/11/%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E4%BB%A3%E7%90%86%E7%9A%84%E6%96%B9%E6%B3%95/">在终端使用各种代理的方法</a>
+    </h1>
+  
+
+        
+        <a href="/2024/03/11/%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E4%BB%A3%E7%90%86%E7%9A%84%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2024-03-11T08:59:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="将终端设置为使用代理的环境"><a href="#将终端设置为使用代理的环境" class="headerlink" title="将终端设置为使用代理的环境"></a>将终端设置为使用代理的环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ALL_PROXY=http://127.0.0.1:7890 <span class="comment"># Clash用这个</span></span><br><span class="line"><span class="built_in">export</span> ALL_PROXY=socks5h://127.0.0.1:10808 <span class="comment"># v2ray用这个</span></span><br></pre></td></tr></table></figure>
+<h2 id="取消代理"><a href="#取消代理" class="headerlink" title="取消代理"></a>取消代理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> ALL_PROXY</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用脚本："><a href="#使用脚本：" class="headerlink" title="使用脚本："></a>使用脚本：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># proxy.sh</span></span><br><span class="line"><span class="comment"># 开启系统代理</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxy_on</span></span>() &#123;</span><br><span class="line">        <span class="built_in">export</span> http_proxy=http://127.0.0.1:7890</span><br><span class="line">        <span class="built_in">export</span> https_proxy=http://127.0.0.1:7890</span><br><span class="line">        <span class="built_in">export</span> no_proxy=127.0.0.1,localhost</span><br><span class="line">        <span class="built_in">export</span> HTTP_PROXY=http://127.0.0.1:7890</span><br><span class="line">        <span class="built_in">export</span> HTTPS_PROXY=http://127.0.0.1:7890 </span><br><span class="line">        <span class="built_in">export</span> NO_PROXY=127.0.0.1,localhost</span><br><span class="line">        <span class="built_in">echo</span> -e <span class="string">&quot;\033[32m[√] 已开启代理\033[0m&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭系统代理</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxy_off</span></span>()&#123;</span><br><span class="line">        <span class="built_in">unset</span> http_proxy</span><br><span class="line">        <span class="built_in">unset</span> https_proxy</span><br><span class="line">        <span class="built_in">unset</span> no_proxy</span><br><span class="line">        <span class="built_in">unset</span> HTTP_PROXY</span><br><span class="line">        <span class="built_in">unset</span> HTTPS_PROXY</span><br><span class="line">        <span class="built_in">unset</span> NO_PROXY</span><br><span class="line">        <span class="built_in">echo</span> -e <span class="string">&quot;\033[31m[×] 已关闭代理\033[0m&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="apt使用代理"><a href="#apt使用代理" class="headerlink" title="apt使用代理"></a>apt使用代理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt -o  Acquire::http::proxy=<span class="string">&quot;socks5h://127.0.0.1:10808/&quot;</span> upgrade <span class="comment"># 临时版</span></span><br></pre></td></tr></table></figure>
+<h2 id="pip使用代理"><a href="#pip使用代理" class="headerlink" title="pip使用代理"></a>pip使用代理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --proxy=http://127.0.0.1:7890 somepackage <span class="comment"># 使用http代理</span></span><br></pre></td></tr></table></figure>
+<p>若要使用socks5代理，则需要先安装PySocks模块，可以用whl下载解决 <a target="_blank" rel="noopener" href="https://files.pythonhosted.org/packages/8d/59/b4572118e098ac8e46e399a1dd0f2d85403ce8bbaad9ec79373ed6badaf9/PySocks-1.7.1-py3-none-any.whl">下载链接</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install PySocks-1.7.1-py3-none-any.whl</span><br><span class="line">pip install --proxy=socks5h://127.0.0.1:10808 somepackage</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/03/11/%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E4%BB%A3%E7%90%86%E7%9A%84%E6%96%B9%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-单行命令记录（长期更新）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -741,94 +810,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/06/15/Ubuntu%E4%B8%8B%E6%8B%94%E9%99%A4%E7%A1%AC%E7%9B%98%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ssh-config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/26/ssh-config/">ssh配置文件</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/26/ssh-config/" class="archive-article-date">
-  	<time datetime="2022-05-26T03:35:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="ssh配置免密登录及vscode"><a href="#ssh配置免密登录及vscode" class="headerlink" title="ssh配置免密登录及vscode"></a>ssh配置免密登录及vscode</h1><p>首先执行: <code>ssh-keygen -t rsa</code>， 生成密钥文件  </p>
-<p>可以看到 <code>~/.ssh</code>目录下生成了两个文件id_rsa，id_rsa.pub分别是私钥和公钥 </p>
-<p>然后把公钥复制给远程主机，需要远程主机ssh配置了允许密钥登录才能生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub usrname@hostip <span class="comment">#-i指定公钥，用默认公钥时可以不加</span></span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub Host</span><br></pre></td></tr></table></figure>
-
-<p>例如如下的两种形式</p>
-<p>copy过程需要密码， 可以在远程主机的<code>~/.ssh/authorized_keys</code>中看到新添加的公钥</p>
-<p>后一种需要先配置config文件在<code>~/.ssh</code>文件夹下  </p>
-<p>参考配置如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host anyname</span><br><span class="line">  HostName 10.xxx.xxx.xxx</span><br><span class="line">  User nnn</span><br><span class="line">  IdentityFile &quot;~/.ssh/id_rsa&quot;</span><br></pre></td></tr></table></figure>
-
-<p>此时可以直接<code>ssh Host</code>来登录, <code>scp Host:dir</code>来代替原scp命令, 其他命令如rsync等也能替代, 例如:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh nnn@10.xxx.xxx.xxx -&gt; ssh anyname</span><br><span class="line">scp ./file nnn@10.xxx.xxx.xxx:~/sharedir -&gt; scp ./file anyname:~/sharedir</span><br></pre></td></tr></table></figure>
-
-<p>Windows平台同样适用，不过需要先安装OpenSSH客户端、服务器：<em>设置-应用-可选功能-添加可选功能</em>（如果没有，在<em>已安装功能</em>中看是否已经安装）。如果IdentityFile的相对路径报错就用绝对路径（注意Windows平台反斜杠），例如</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IdentityFile &quot;C:\Users\dyf\.ssh\id_rsa&quot; </span><br></pre></td></tr></table></figure>
-
-<p>该配置也可用于VScode的Remote SSH，写好就能直接看到</p>
-<h3 id="可能遇到的其他问题："><a href="#可能遇到的其他问题：" class="headerlink" title="可能遇到的其他问题："></a>可能遇到的其他问题：</h3><p>若之前连接过主机，但主机发生了变更(例如重装系统，换机器等)，但ip没变，可能会报错，此时需要执行：  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -R <span class="string">&quot;[cn.buaamc2.net]:22&quot;</span> <span class="comment">#[ip or domain]:port</span></span><br></pre></td></tr></table></figure>
-
-<p>把该ip主机从known_hosts中删除</p>
-<p>Windows机器无法使用ssh-copy-id命令，在使用前先执行如下内容：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ssh-copy-id</span><span class="params">([string]<span class="variable">$userAtMachine</span>, <span class="variable">$args</span>)</span></span>&#123;   </span><br><span class="line">    <span class="variable">$publicKey</span> = <span class="string">&quot;<span class="variable">$ENV:USERPROFILE</span>&quot;</span> + <span class="string">&quot;/.ssh/id_rsa.pub&quot;</span></span><br><span class="line">    <span class="keyword">if</span> (!(<span class="built_in">Test-Path</span> <span class="string">&quot;<span class="variable">$publicKey</span>&quot;</span>))&#123;</span><br><span class="line">        <span class="built_in">Write-Error</span> <span class="string">&quot;ERROR: failed to open ID file &#x27;<span class="variable">$publicKey</span>&#x27;: No such file&quot;</span>            </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        &amp; <span class="built_in">cat</span> <span class="string">&quot;<span class="variable">$publicKey</span>&quot;</span> | ssh <span class="variable">$args</span> <span class="variable">$userAtMachine</span> <span class="string">&quot;umask 077; test -d .ssh || mkdir .ssh ; cat &gt;&gt; .ssh/authorized_keys || exit 1&quot;</span>      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/26/ssh-config/">展开全文 >></a>
         </p>
       
 
