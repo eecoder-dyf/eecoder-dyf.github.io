@@ -124,6 +124,69 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-NVIDIA驱动安装报错汇总" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/03/12/NVIDIA%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E6%B1%87%E6%80%BB/">NVIDIA驱动安装报错汇总</a>
+    </h1>
+  
+
+        
+        <a href="/2024/03/12/NVIDIA%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E6%B1%87%E6%80%BB/" class="archive-article-date">
+  	<time datetime="2024-03-12T02:51:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="An-error-occurred-while-performing-the-step-“Building-kernel-modules”"><a href="#An-error-occurred-while-performing-the-step-“Building-kernel-modules”" class="headerlink" title="An error occurred while performing the step: “Building kernel modules”"></a>An error occurred while performing the step: “Building kernel modules”</h2><p>一般是gcc版本不对，最新显卡驱动（2024-03-12）需要的gcc版本是gcc-12而Ubuntu 22.04默认是gcc-11，需要手动安装gcc-12</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install gcc-12</span><br><span class="line"><span class="built_in">rm</span> /usr/bin/gcc</span><br><span class="line"><span class="built_in">ln</span> -s /usr/bin/gcc-12 /usr/bin/gcc</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/03/12/NVIDIA%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E6%B1%87%E6%80%BB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-在终端使用各种代理的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -742,74 +805,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/09/06/ssh%E4%BD%BF%E7%94%A8%E5%AF%86%E9%92%A5%E7%99%BB%E9%99%86-IRC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Ubuntu下拔除硬盘的正确方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/15/Ubuntu%E4%B8%8B%E6%8B%94%E9%99%A4%E7%A1%AC%E7%9B%98%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F/">Ubuntu下拔除硬盘的正确方式</a>
-    </h1>
-  
-
-        
-        <a href="/2022/06/15/Ubuntu%E4%B8%8B%E6%8B%94%E9%99%A4%E7%A1%AC%E7%9B%98%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2022-06-15T01:15:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Linux下通用移动硬盘移除方法"><a href="#Linux下通用移动硬盘移除方法" class="headerlink" title="Linux下通用移动硬盘移除方法"></a>Linux下通用移动硬盘移除方法</h2><p>在Windows下，我们拔除移动硬盘时一般是在右下角弹出硬盘移动设备。<br>但是在Linux，尤其是命令行时该如何操作呢？</p>
-<p>以硬盘<code>/dev/sda</code>为例</p>
-<h3 id="第一步：取消硬盘挂载"><a href="#第一步：取消硬盘挂载" class="headerlink" title="第一步：取消硬盘挂载"></a>第一步：取消硬盘挂载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">udisksctl unmount -b /dev/sda1</span><br></pre></td></tr></table></figure>
-<p>这里用到了udisksctl这个工具，不用这个工具也可以，直接<code>sudo umount -l /dev/sda1</code></p>
-<h3 id="第二步：断开电源"><a href="#第二步：断开电源" class="headerlink" title="第二步：断开电源"></a>第二步：断开电源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">udisksctl power-off -b /dev/sda</span><br></pre></td></tr></table></figure>
-<p>这样才算真正弹出了硬盘，可以安心拔出了<br>另外u盘一般可以不断电直接拔除，最多会造成正在读写的数据丢失，不会对磁盘硬件造成影响</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/06/15/Ubuntu%E4%B8%8B%E6%8B%94%E9%99%A4%E7%A1%AC%E7%9B%98%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F/">展开全文 >></a>
         </p>
       
 
