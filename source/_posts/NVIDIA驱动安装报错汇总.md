@@ -12,6 +12,8 @@ ln -s /usr/bin/gcc-12 /usr/bin/gcc
 ```
 ### RuntimeError: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero.
 具体表现为torch找不到某个device，解决方式：
+首先上nvidia[开发者官网](https://developer.download.nvidia.cn/compute/cuda/repos/)找到和显卡驱动对应的modprobe包，安装
 ```bash
+sudo dpkg -i nvidia-modprobe_xxx.xx.xx-0ubuntu1_amd64.deb
 sudo modprobe -r nvidia_uvm && sudo modprobe nvidia_uvm
 ```
