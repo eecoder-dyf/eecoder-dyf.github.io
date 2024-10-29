@@ -124,6 +124,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ssh使用密钥登陆-IRC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/06/ssh%E4%BD%BF%E7%94%A8%E5%AF%86%E9%92%A5%E7%99%BB%E9%99%86-IRC/">ssh使用密钥登陆-IRC</a>
+    </h1>
+  
+
+        
+        <a href="/2022/09/06/ssh%E4%BD%BF%E7%94%A8%E5%AF%86%E9%92%A5%E7%99%BB%E9%99%86-IRC/" class="archive-article-date">
+  	<time datetime="2022-09-06T00:33:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Step1：下载私钥"><a href="#Step1：下载私钥" class="headerlink" title="Step1：下载私钥"></a>Step1：下载私钥</h2><p>将私钥<code>id_rsa.irc</code>下载到 <code>~/.ssh/</code> (Linux或macOS) ，<code>C:\Users\你的用户名\.ssh</code> (Windows) 文件夹。如果你没有自己生成的密钥文件，可以改名为<code>id_rsa</code>，这样之后命令行或config文件登陆时就无需自行设定密钥路径<br>注：Linux端需要 <code>chmod 600 ~/.ssh/id_rsa.irc</code>，限定私钥权限</p>
+<h2 id="Step2：设置ssh密钥登陆"><a href="#Step2：设置ssh密钥登陆" class="headerlink" title="Step2：设置ssh密钥登陆"></a>Step2：设置ssh密钥登陆</h2><h3 id="第三方ssh软件"><a href="#第三方ssh软件" class="headerlink" title="第三方ssh软件"></a>第三方ssh软件</h3><p>以MobaXterm软件为例：<br><img src="/2022/09/06/ssh%E4%BD%BF%E7%94%A8%E5%AF%86%E9%92%A5%E7%99%BB%E9%99%86-IRC/Moba.png"></p>
+<h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p xx ywz@xxx.buaamc2.net -i <span class="string">&quot;~/.ssh/id_rsa.irc&quot;</span> <span class="comment"># -p参数指定端口， -i参数指定私钥路径</span></span><br></pre></td></tr></table></figure>
+<p>建议服务器间相互连接时使用</p>
+<h3 id="config文件"><a href="#config文件" class="headerlink" title="config文件"></a>config文件</h3><p>编辑<code>~/.ssh/config</code> 或 <code>C:\Users\你的用户名\.ssh\config</code>，添加如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host xxx</span><br><span class="line">    HostName xxx.buaamc2.net</span><br><span class="line">    User ywz</span><br><span class="line">    Port xx</span><br><span class="line">    IdentityFile &quot;C:\Users\你的用户名\.ssh\id_rsa.irc&quot; </span><br></pre></td></tr></table></figure>
+<p>然后命令行输入<code>ssh xxx</code>即可<br>流程可以参考下图：<br><img src="/2022/09/06/ssh%E4%BD%BF%E7%94%A8%E5%AF%86%E9%92%A5%E7%99%BB%E9%99%86-IRC/ssh_config.png"><br>config文件具体使用可参考<a target="_blank" rel="noopener" href="https://eecoder-dyf.github.io/2022/05/26/ssh-config/">ssh免密登陆</a></p>
+<h2 id="Step3-切换到自己账号"><a href="#Step3-切换到自己账号" class="headerlink" title="Step3 切换到自己账号"></a>Step3 切换到自己账号</h2><p>用我们提供的私钥登陆后是ywz账号，以登陆user账号为例，可以通过命令<code>su user</code>切换到自己的账号，会提示输入账号密码</p>
+<h2 id="Step4-建立自己的密钥对"><a href="#Step4-建立自己的密钥对" class="headerlink" title="Step4 建立自己的密钥对"></a>Step4 建立自己的密钥对</h2><p>假定服务器端用户为user</p>
+<ol>
+<li>本地命令行输入<code>ssh-keygen</code>，根据提示依次输入密钥路径名称（如果之前没有<code>~/.ssh/id_rsa</code>文件，推荐默认，这样就不用指定特定密钥）、密码（可以没有）。得到私钥<code>id_rsa</code>和公钥<code>id_rsa.pub</code></li>
+<li>在服务器禁止密码登录的情况下，无法使用<code>ssh-copy-id</code>的方法将公钥添加到服务器的<code>~/.ssh/authorized_keys</code>，需要复制本地的公钥<code>~/.ssh/id_rsa.pub</code>或<code>C:\Users\你的用户名\.ssh\id_rsa.pub</code>中的内容至服务器端的<code>/home/user/.ssh/authorized_keys</code>，追加在最后一行（如果没有，就新建一个文件）</li>
+</ol>
+<p>然后就可以使用自己的密钥登陆自己的账号了，此外要<strong>注意权限管理</strong>，不然可能会出现拒绝访问的现象</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 750 /home/user/ <span class="comment">#也可以刷700</span></span><br><span class="line"><span class="built_in">chmod</span> -R 600 /home/user/.ssh/</span><br></pre></td></tr></table></figure>
+<p>其他：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b1bdaea5e5c8?u_atoken=f6db5758-f46b-4ee1-a7ef-a1376fddf858&u_asession=01PyZhzoP4HzaUL5X83JU6XOUkLSsETWUJh1pn0uM5ELTgrRtzlODL-tZo-NEvqkOxX0KNBwm7Lovlpxjd_P_q4JsKWYrT3W_NKPr8w6oU7K97Z3au9yv4BfD63ElUK8w-zdjoMV1y19BFQvaXcOyBfmBkFo3NEHBv0PZUm6pbxQU&u_asig=05mY10hmEtdZbUAenCqysz0YcBOKCrOu66d7HbC3zmXSSG7-PFS8Torr8_T1VMVN60k7tEWhn6T6UftUGbMBVMEaRPB1IxhlwtumIm4_X0g45ZUXUa6nloj0d81JyZqC7o_GE-Jh0H_kt119YJH4onQDiXmFkwLRZns_XG-fWNnsz9JS7q8ZD7Xtz2Ly-b0kmuyAKRFSVJkkdwVUnyHAIJzZKOHwVLayKDdAJnbYr3LUHj3_EqHwobBSX6lLzyE2J0qBR97QLsOYcZJeUxi-_JXu3h9VXwMyh6PgyDIVSG1W8gzvE26WgQmdNtVY9p_a43MqIUE1FeE2xjUDMIFCPoAcPm0_70rY2940tUHVQ8_WZrRRzSXG8uk_FhwUwRIpwumWspDxyAEEo4kbsryBKb9Q&u_aref=OeSsskrZmNmE3GFlmSBzsQkXZDE=">ssh私钥修改密码</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/09/06/ssh%E4%BD%BF%E7%94%A8%E5%AF%86%E9%92%A5%E7%99%BB%E9%99%86-IRC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Ubuntu下拔除硬盘的正确方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
